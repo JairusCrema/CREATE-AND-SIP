@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Create And Sip</title>
+
+<style>
+<!-- INTERNAL CSS-->
+
+       * {
+            box-sizing: border-box;
+       } 
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial;
+    background-color: #efffee;
+    color: #222;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+        }
+
+ 
+ 
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    align-items: stretch;
+                  }
+  
+             
+
+/* Main content*/
+
+.main {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TOP BAR */
+.top-bar {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+/* Three dots browser look*/
+.top-dots {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 30px;
+    padding: 5px 12px;
+    border-bottom: 1px solid #777;
+    border-radius: 12px;
+}
+
+.top-dots .color-circle {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    border: 1px solid #777;
+}
+
+.top-dots .red { background: orange; }
+.top-dots .yellow { background: yellow; }
+.top-dots .green { background: #65c98c; }
+
+
+/* HEADER */
+header {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    margin: 0;
+}
+
+.nav-links {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.hamburger {
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    color: #330000;
+    cursor: pointer;
+    margin-left: 20px;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.hamburger-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 9999;
+    width: 300px;
+    max-width: calc(100vw - 30px);
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px #00000030;
+}
+
+.hamburger-menu.active {
+    display: block;
+}
+
+.hamburger-menu h2 {
+    color: #e75480;
+}
+
+.search-container {
+    width: 100%;
+    margin: 15px auto;
+}
+
+#menuSearch {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e88da8;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+.menu-item {
+    padding: 12px;
+    margin: 8px 0;
+    background: #ffe4ed;
+    border-radius: 10px;
+}
+
+.nav-links ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: auto;
+    justify-content: flex-end;
+    flex: 1;
+    
+}
+
+.nav-links a {
+    color: #330000;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 50px;
+    transition: 0.3s;
+    
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    background-color: #e75480;
+    color: white;
+}
+
+
+/* HEADER CONTENT */
+.header-content {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+
+    width: calc(100% - 35px);
+    min-width: 0;
+    padding: 16px 0;
+    margin-right: 35px;
+}
+/* website logo*/
+.brand-logo {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* search box */
+.search-box {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 99%;
+    max-width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 1px 6px #20212430;
+}
+
+.search-box:hover,
+.search-box:focus-within {
+    box-shadow: 0 1px 8px #20212445;
+}
+
+/* SEARCH ICON */
+.search-icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    color: #9aa0a6;
+}
+
+/* Search input */
+.search-box input {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #202124;
+    font-size: 16px;
+}
+
+
+
+/* FILTER GRID */
+
+.filters-grid {
+    grid-column: 2;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+    row-gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.location-controls,
+.order-controls,
+.location-menu,
+.order-menu {
+    width: 100%;
+    min-width: 0;
+}
+
+/* CONTROL GROUPS */
+
+.location-controls,
+.order-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+}
+
+/* DROPDOWN CONTAINERS */
+
+.location-menu,
+.order-menu {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+}
+
+/* DROPDOWN BUTTONS */
+
+.location-menu summary,
+.order-menu summary {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    width: 100%;
+    height: 48px;
+    padding: 0 10px;
+
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+
+    background: #fff;
+    color: #202124;
+
+    font-size: 13px;
+    cursor: pointer;
+    list-style: none;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+/* REMOVE DEFAULT ARROW */
+
+.location-menu summary::-webkit-details-marker,
+.order-menu summary::-webkit-details-marker {
+    display: none;
+}
+
+/* CUSTOM ARROW */
+
+.location-menu summary::after,
+.order-menu summary::after {
+    content: "\25BE";
+    margin-left: auto;
+    font-size: 10px;
+    color: #777;
+    flex-shrink: 0;
+}
+
+/* ICONS */
+
+.location-icon,
+.order-icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    color: #d65b7e;
+}
+
+/* DROPDOWN LIST */
+
+.location-options {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 5px);
+    left: 0;
+
+    width: 100%;
+    max-height: 220px;
+    overflow-y: auto;
+
+    padding: 5px;
+    border: 1px solid #dfe1e5;
+    border-radius: 12px;
+
+    background: white;
+    box-shadow: 0 3px 10px #00000020;
+}
+
+/* DROPDOWN ITEMS */
+
+.location-options ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.location-options button {
+    display: block;
+    width: 100%;
+    padding: 9px 8px;
+
+    border: 0;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #202124;
+
+    text-align: left;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.location-options button:hover {
+    background: #fff0f4;
+}
+
+/* OPEN DROPDOWN */
+
+.location-menu[open],
+.order-menu[open] {
+    z-index: 101;
+}
+
+
+
+
+/* responsive design in laptop tablet*/
+@media (max-width: 900px) {
+
+    .header-content {
+        grid-template-columns: 90px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+}
+
+/* responsive design in phones */
+@media (max-width: 640px) {
+
+    header {
+        padding: 12px;
+    }
+
+    .header-content {
+        grid-template-columns: 65px minmax(0, 1fr);
+        gap: 8px;
+        padding: 10px 0;
+    }
+
+    .brand-logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .search-box {
+        height: 44px;
+        padding: 0 10px;
+    }
+
+    .search-box input {
+        font-size: 14px;
+    }
+
+.location-menu summary,
+.order-menu summary {
+    height: 46px;
+    font-size: 11px;
+    padding: 0 8px;
+    gap: 5px;
+}
+
+
+}
+
+.hero {
+    background-image: url("website bg.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    min-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 40px;
+    text-align: left;
+}
+
+
+.hero h1,
+.hero h2 {
+    background: none;
+    margin: 0;
+    color: black;
+    font-family: Arial, sans-serif;
+    
+}
+
+.hero h1 {
+    font-weight: 900;
+}
+
+.hero h2 {
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+.drinks-title {
+    text-align: left;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 25px 30px 15px;
+}
+
+/* Best sellers */
+
+.best-sellers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 30px;
+}
+
+
+.image-card {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 18px;
+    object-fit: cover
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+
+
+/*Ad-ons*/
+
+        .ad-ons {
+            font-family: Arial, sans-serif;
+            background: transparent;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .menu {
+            background: white;
+            max-width: 350px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #e75480;
+            letter-spacing: 3px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+
+        .price {
+            color: #e75480;
+            font-weight: bold;
+        }
+
+
+/* FOOTER */
+
+footer {
+    width: 100%;
+    margin: 0;
+    padding: 40px 4% 0;
+    background: #ffe4e9;
+    color: #330000;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.3fr;
+    gap: 40px;
+    width: 100%;
+    margin: 0;
+}
+
+.footer-column h2 {
+    font-size: 20px;
+    margin: 0 0 15px;
+    color: #a83258;
+}
+
+.footer-column p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 15px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 12px;
+}
+
+.footer-column a {
+    color: #330000;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-column a:hover {
+    color: #e75480;
+}
+
+/* SOCIAL MEDIA */
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    font-size: 22px;
+    color: #a83258;
+}
+
+/* CONTACT ICONS */
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.contact-item i {
+    color: #e75480;
+    margin-top: 3px;
+}
+
+/* COPYRIGHT */
+
+.footer-bottom {
+    width: 100%;
+    margin-top: 35px;
+    padding: 15px 10px;
+    background: #f8c6d2;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* RESPONSIVE FOOTER */
+
+@media (max-width: 700px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .about-column {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 450px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-column {
+        grid-column: auto;
+    }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+ 
+ <!-- right/main content -->
+ 
+       <div class="main content">
+ 
+            <!-- navigation bar-->
+ 
+              <div class="top-bar">
+
+        <div class="top-dots">
+
+    <div class="color-circle red"></div>
+    <div class="color-circle yellow"></div>
+    <div class="color-circle green"></div>
+          </div> 
+
+<header>
+ <nav class="nav-links">
+
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Location</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+
+    <button type="button" class="hamburger" id="menuToggle">
+    ☰
+</button>
+
+<div class="hamburger-menu" id="hamburgerMenu">
+    <h2>Menu</h2>
+
+    <input type="text" id="menuSearch"
+        placeholder="Search your favorite drink...">
+
+    <div id="menuItems">
+        <div class="menu-item">Milk Tea</div>
+        <div class="menu-item">Matcha Latte</div>
+        <div class="menu-item">Strawberry Milk</div>
+        <div class="menu-item">Chocolate Drink</div>
+        <div class="menu-item">Donut</div>
+        <div class="menu-item">Sprinkles</div>
+        <div class="menu-item">Cherry</div>
+        <div class="menu-item">Strawberry Add-on</div>
+    </div>
+</div>
+
+
+<div class="hamburger-menu" id="hamburgerMenu">
+    <h2>Drink Menu</h2>
+
+    <div class="search-container">
+        <input type="text" id="menuSearch"
+        placeholder="Search your favorite drink...">
+    </div>
+
+    <div id="menuItems">
+        <div class="menu-item">Milk Tea</div>
+        <div class="menu-item">Matcha Latte</div>
+        <div class="menu-item">Strawberry Milk</div>
+        <div class="menu-item">Chocolate Drink</div>
+        <div class="menu-item">Donut</div>
+        <div class="menu-item">Sprinkles</div>
+        <div class="menu-item">Cherry</div>
+        <div class="menu-item">Strawberry Add-on</div>
+    </div>
+</div>
+
+</nav>
+
+
+        <div class="header-content">
+        <div class="brand-logo">
+    <img src="logo.png" alt="Create and Sip Logo">
+</div>
+            <form class="search-box" action="https://www.google.com/search" method="get" role="search">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.78l5 4.99L20.49 19l-4.99-5zm-5 0A4.5 4.5 0 1 1 10.5 5a4.5 4.5 0 0 1 0 9z"/>
+                </svg>
+                <input type="search" name="q" placeholder="Search Your Wants" aria-label="Search Your Wants" required>
+            </form>
+            <div class="filters-grid">
+            <div class="location-controls">
+                <details class="location-menu">
+                    <summary>
+                        <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="2.5"/>
+                        </svg>
+                        <span class="location-label">Location</span>
+                    </summary>
+                    <div class="location-options" aria-label="Choose a location">
+                        <ul>
+                            <li><button type="button" data-location="Bacoor">Bacoor</button></li>
+                            <li><button type="button" data-location="Carmona">Carmona</button></li>
+                            <li><button type="button" data-location="Cavite City">Cavite City</button></li>
+                            <li><button type="button" data-location="Dasmariñas">Dasmariñas</button></li>
+                            <li><button type="button" data-location="General Trias">General Trias</button></li>
+                            <li><button type="button" data-location="Imus (Capital)">Imus (Capital)</button></li>
+                            <li><button type="button" data-location="Tagaytay">Tagaytay</button></li>
+                            <li><button type="button" data-location="Trece Martires">Trece Martires</button></li>
+                        </ul>
+                    </div>
+                </details>
+                <details class="location-menu municipality-menu">
+                    <summary>
+                        <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="2.5"/>
+                        </svg>
+                        <span class="location-label">Municipality</span>
+                    </summary>
+                    <div class="location-options" aria-label="Choose a municipality">
+                        <ul>
+                            <li><button type="button" data-location="Alfonso">Alfonso</button></li>
+                            <li><button type="button" data-location="Amadeo">Amadeo</button></li>
+                            <li><button type="button" data-location="General Emilio Aguinaldo">General Emilio Aguinaldo</button></li>
+                            <li><button type="button" data-location="General Mariano Alvarez (GMA)">General Mariano Alvarez (GMA)</button></li>
+                            <li><button type="button" data-location="Indang">Indang</button></li>
+                            <li><button type="button" data-location="Kawit">Kawit</button></li>
+                            <li><button type="button" data-location="Magallanes">Magallanes</button></li>
+                            <li><button type="button" data-location="Maragondon">Maragondon</button></li>
+                            <li><button type="button" data-location="Mendez">Mendez</button></li>
+                            <li><button type="button" data-location="Naic">Naic</button></li>
+                            <li><button type="button" data-location="Noveleta">Noveleta</button></li>
+                            <li><button type="button" data-location="Rosario">Rosario</button></li>
+                            <li><button type="button" data-location="Silang">Silang</button></li>
+                            <li><button type="button" data-location="Tanza">Tanza</button></li>
+                            <li><button type="button" data-location="Ternate">Ternate</button></li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            <div class="order-controls">
+                <details class="order-menu">
+                    <summary>
+                        <svg class="order-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 3v6a3 3 0 0 0 6 0V3M7 12v9M17 3c-2 3-2 7 0 9v9"/>
+                        </svg>
+                        <span class="order-label">Dine In / Take Out</span>
+                    </summary>
+                    <div class="location-options" aria-label="Choose dine-in or take-out">
+                        <ul>
+                            <li><button type="button" data-order="Dine In">Dine In</button></li>
+                            <li><button type="button" data-order="Take Out">Take Out</button></li>
+                        </ul>
+                    </div>
+                </details>
+                <details class="order-menu walk-menu">
+                    <summary>
+                        <svg class="order-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="13" cy="4" r="2"/>
+                            <path d="m10 22 2-7 3 2 2 5M8 13l3-6 4 2 3 0M11 16l-3 6"/>
+                        </svg>
+                        <span class="order-label">Walk In / Delivery</span>
+                    </summary>
+                    <div class="location-options" aria-label="Choose walk-in or delivery">
+                        <ul>
+                            <li><button type="button" data-order="Walk In">Walk In</button></li>
+                            <li><button type="button" data-order="Delivery">Delivery</button></li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+</header>
+
+<section class="hero">
+    <h1>Create Your Drink<br>
+      And Sip Your Mood</h1>
+      <h2>It is welcoming space where people can create their<br>
+        Own flavor and sip their own story.</h2>
+</section>
+
+<script>
+
+const menuToggle = document.getElementById("menuToggle");
+const hamburgerMenu = document.getElementById("hamburgerMenu");
+const searchInput = document.getElementById("menuSearch");
+const menuItems = document.querySelectorAll("#menuItems .menu-item");
+
+menuToggle.addEventListener("click", function() {
+    hamburgerMenu.classList.toggle("active");
+});
+
+searchInput.addEventListener("input", function() {
+    const searchValue = this.value.toLowerCase();
+
+    menuItems.forEach(function(item) {
+        item.style.display =
+            item.textContent.toLowerCase().includes(searchValue)
+            ? "block" : "none";
+    });
+});
+
+
+searchInput.addEventListener("input", function() {
+
+    const searchValue = this.value.toLowerCase();
+
+    menuItems.forEach(function(item) {
+
+        const itemName = item.textContent.toLowerCase();
+
+        item.style.display =
+            itemName.includes(searchValue) ? "block" : "none";
+
+    });
+});
+
+document.querySelectorAll(".location-menu").forEach((locationMenu) => {
+    const locationLabel = locationMenu.querySelector(".location-label");
+
+    locationMenu.querySelectorAll("[data-location]").forEach((option) => {
+        option.addEventListener("click", () => {
+            locationLabel.textContent = option.dataset.location;
+            locationMenu.open = false;
+        });
+    });
+});
+
+document.querySelectorAll(".order-menu").forEach((orderMenu) => {
+    const orderLabel = orderMenu.querySelector(".order-label");
+
+    orderMenu.querySelectorAll("[data-order]").forEach((option) => {
+        option.addEventListener("click", () => {
+            orderLabel.textContent = option.dataset.order;
+            orderMenu.open = false;
+        });
+    });
+});
+</script>
+
+</div>
+
+
+
+<!-- DRINKS -->
+<h2 class="drinks-title">Drinks</h2>
+
+<section class="best-sellers">
+
+    <div class="image-card">
+        <img src="mocha.jpeg" alt="Mocha">
+    </div>
+
+    <div class="image-card">
+        <img src="macha.jpeg" alt="Matcha">
+    </div>
+
+    <div class="image-card">
+        <img src="mocha.jpeg" alt="Our Drinks">
+    </div>
+
+</section>
+
+<!-- PASTRY -->
+<h2 class="drinks-title">Pastry</h2>
+
+<section class="best-sellers">
+
+    <div class="image-card">
+        <img src="vanilla.png" alt="Vanilla">
+    </div>
+
+    <div class="image-card">
+        <img src="chocolate.png" alt="Chocolate">
+    </div>
+
+    <div class="image-card">
+        <img src="strawberry.png" alt="Strawberry">
+    </div>
+
+</section>
+
+<div class="ad-ons">
+
+    <div class="menu">
+        <h1>ADD-ONS</h1>
+
+        <div class="item">
+            <span>🍩 Donuts</span>
+            <span class="price">₱30</span>
+        </div>
+
+        <div class="item">
+            <span>🍒 Cherries</span>
+            <span class="price">₱15</span>
+        </div>
+
+        <div class="item">
+            <span>🍓 Strawberries</span>
+            <span class="price">₱15</span>
+        </div>
+
+        <div class="item">
+            <span>🥢 Stick</span>
+            <span class="price">₱5</span>
+        </div>
+
+        <div class="item">
+            <span>🐉 Dragonfruits</span>
+            <span class="price">₱30</span>
+        </div>
+
+        <div class="item">
+            <span>🍋 Lemons</span>
+            <span class="price">₱15</span>
+        </div>
+
+        <div class="item">
+            <span>✨ Sprinkles</span>
+            <span class="price">₱10</span>
+        </div>
+
+        <div class="item">
+            <span>🍭 Lollipops</span>
+            <span class="price">₱10</span>
+        </div>
+    </div>
+    </div>
+
+    </div>
+<!-- FOOTER -->
+
+<footer>
+    <div class="footer-container">
+
+        <!-- ABOUT US -->
+        <div class="footer-column about-column">
+            <h2>About Us</h2>
+
+            <p>
+                This website layout for Create and Sip is designed to be simple,
+                clean, and user-friendly. At the top, there is a header section
+                for the navigation bar where the logo and menu can be placed.
+                Below it is a large banner section intended for the tagline
+                and main image of the brand. In the middle, there are three
+                equal boxes which will serve as the featured products,
+                bestsellers, or the "Create Your Drink" steps, allowing
+                customers to easily see our main offerings.
+            </p>
+
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-google"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+        <!-- USEFUL LINKS -->
+        <div class="footer-column">
+            <h2>Useful Links</h2>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Location</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT INFO -->
+        <div class="footer-column">
+            <h2>Contact Info</h2>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>Barangay Cabuco, Trece Martires City, Cavite</p>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <p>091234567890</p>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <p>createandsip@gmail.com</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+        <p>&copy; 2026 Create &amp; Sip | All Rights Reserved</p>
+     </div>
+</div>
+
+</div>
+
+</body>
+</html>
